@@ -1,0 +1,6 @@
+pvporcupine
+pyaudio
+numpy
+faster-whisper
+python-dotenv
+ffmpeg-python  # Required for audio
