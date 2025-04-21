@@ -35,8 +35,7 @@ def remove_trailing_seconds(filename, seconds=1):
 
     if duration > seconds * 1000:
         trimmed_audio = audio[:duration - (seconds * 1000)]
-        # trimmed_audio.export(filename, format="wav")
-        trimmed_audio.export("trimmed", format="wav")
+        trimmed_audio.export(filename, format="wav")
         print(f"Trimmed and saved: {filename}")
     else:
         print("Audio too short to trim.")
