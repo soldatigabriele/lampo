@@ -28,7 +28,7 @@ stream = pa.open(rate=porcupine.sample_rate,
 print("Listening for wake word...")
 
 
-def remove_trailing_seconds(filename, seconds=2):
+def remove_trailing_seconds(filename, seconds=1):
     print(f"Removing last {seconds} seconds of audio...")
     audio = AudioSegment.from_wav(filename)
     duration = len(audio)
