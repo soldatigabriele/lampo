@@ -9,13 +9,20 @@ import numpy as np
 
 load_dotenv()
 TOKEN = os.getenv("PORCUPINE_TOKEN")
+SYSTEM = os.getenv("SYSTEM")
+if SYSTEM == "mac":
+    porcupine = pvporcupine.create(
+        keywords=["hey lampo"], 
+        access_key=TOKEN,
+        keyword_paths=['mac/hey-lampo_it.ppn'],
+        model_path='porcupine_params_it.pv',
+    )
+else:
+    porcupine = pvporcupine.create(
+        keywords=["blueberry"], 
+        access_key=TOKEN,
+    )
 
-porcupine = pvporcupine.create(
-    keywords=["hey lampo"], 
-    access_key=TOKEN,
-    keyword_paths=['mac/hey-lampo_it.ppn'],
-    model_path='porcupine_params_it.pv',
-)
 
 pa = pyaudio.PyAudio()
 stream = pa.open(rate=porcupine.sample_rate,
