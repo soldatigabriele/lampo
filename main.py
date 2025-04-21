@@ -1,4 +1,5 @@
 import pvporcupine
+from pydub import AudioSegment
 import pyaudio
 from dotenv import load_dotenv
 import os
@@ -25,6 +26,19 @@ stream = pa.open(rate=porcupine.sample_rate,
                  frames_per_buffer=porcupine.frame_length)
 
 print("Listening for wake word...")
+
+
+def remove_trailing_seconds(filename, seconds=2):
+    print(f"Removing last {seconds} seconds of audio...")
+    audio = AudioSegment.from_wav(filename)
+    duration = len(audio)
+
+    if duration > seconds * 1000:
+        trimmed_audio = audio[:duration - (seconds * 1000)]
+        trimmed_audio.export(filename, format="wav")
+        print(f"Trimmed and saved: {filename}")
+    else:
+        print("Audio too short to trim.")
 
 def transcribe_audio(filename="command.wav"):
     print("Transcribing...")
@@ -65,7 +79,7 @@ def record_audio(filename="command.wav", record_seconds=5):
 
 
 
-def record_until_silence(filename="command.wav", max_record_seconds=10, silence_threshold=500, silence_duration=3.0):
+def record_until_silence(filename="command.wav", max_record_seconds=10, silence_threshold=500, silence_duration=2.0):
     print("Recording until silence...")
 
     frames = []
@@ -106,6 +120,7 @@ try:
         if porcupine.process(pcm) >= 0:
             print("Wake word detected!")
             record_until_silence("command.wav")
+            remove_trailing_seconds("command.wav")
             command_text = transcribe_audio("command.wav")
             print(command_text)
 
