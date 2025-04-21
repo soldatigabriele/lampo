@@ -1,0 +1,7 @@
+pvporcupine
+pyaudio
+numpy
+python-dotenv
+ctranslate2>=4.0,<5.0
+faster-whisper==1.0.3
+ffmpeg-python
