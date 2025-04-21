@@ -65,7 +65,7 @@ def record_audio(filename="command.wav", record_seconds=5):
 
 
 
-def record_until_silence(filename="command.wav", max_record_seconds=10, silence_threshold=500, silence_duration=1.0):
+def record_until_silence(filename="command.wav", max_record_seconds=10, silence_threshold=500, silence_duration=3.0):
     print("Recording until silence...")
 
     frames = []
