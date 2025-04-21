@@ -19,10 +19,11 @@ if SYSTEM == "mac":
     )
 else:
     porcupine = pvporcupine.create(
-        keywords=["blueberry"], 
+        keywords=["hey lampo"], 
         access_key=TOKEN,
+        keyword_paths=['raspberry/hey-lampo_it.ppn'],
+        model_path='porcupine_params_it.pv',
     )
-
 
 pa = pyaudio.PyAudio()
 stream = pa.open(rate=porcupine.sample_rate,
